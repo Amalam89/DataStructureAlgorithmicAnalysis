@@ -1,0 +1,42 @@
+
+#1 Two Number Sum
+'''
+Sort the array which takes O(nlog(n))-time (mergesort, heapsort, avg quicksort)
+move one of two pointers at either end of array based on 
+comparing it to targetsum.
+Moving the right pointer will yeild a smaller number/moving
+left pointer will yeild a greater number. Compare to targetsum
+and move either poiner accordingly.
+'''	   
+#O(nlog(n))-time/O(1)-space
+def twoNumberSum(array, targetSum):
+	beg = 0
+	end = len(array)-1
+	array.sort()
+    while (beg != end):
+    	if (array[beg] + array[end])==targetSum:
+    		return [array[beg],array[end]]
+    	elif (array[beg] + array[end])>targetSum:
+            end -= 1
+        else:
+            beg += 1		
+	return []
+
+'''
+Start with empty dict then add values of the array to it
+before adding to the dict you will check if the targetSum could be 
+attained with the currenty ith element(potential new dict addition) 
+and one of the dictkeys which would equal y.
+Searching dict has O(1)-time complexity, worse case move to end of array
+which would give us O(n)-time comlexity of the algorithm.
+'''
+#O(n)-time/O(n)-space
+def twoNumberSum(array, targetSum):
+    newtable=dict()
+	for i in array:
+		y = targetSum - i
+		if y in newtable:
+			return[i,y]
+		else:
+			newtable[i]=True
+	return []
