@@ -1,0 +1,46 @@
+#O(n^2) time | O(n)
+def arrayOfProducts(array):
+    newArr = [1 for _ in range(len(array))]    
+    for i in range(len(array)):
+        product = 1
+        for j in range(len(array)):
+            if i!=j:
+                product *= array[j]
+        newArr[i] = product
+        
+    return newArr
+
+#O(n) time | O(n)
+def arrayOfProducts(array):
+    numberCount = {}
+    newArr = []    
+    for number in array:
+        if number not in numberCount:
+            numberCount[number] = 1
+        else:
+            numberCount[number] += 1
+    for number in array:
+        product = 1
+        numberCount[number] -= 1
+        for key, value in numberCount.items():
+            product *= key**value
+        newArr.append(product)
+        numberCount[number] += 1
+        
+    return newArr
+
+#O(n) time | O(n) space
+def arrayOfProducts(array):
+    newArr = [1 for _ in range(len(array))]
+    
+    product = 1
+    for i in range(len(array)):
+        newArr[i] = product
+        product *= array[i]
+    
+    product = 1
+    for i in reversed(range(len(array))):
+        newArr[i] *= product
+        product *= array[i]
+        
+    return newArr
