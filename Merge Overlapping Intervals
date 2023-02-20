@@ -1,0 +1,12 @@
+#O(nlog(n)) - time | O(n) - space
+def mergeOverlappingIntervals(intervals):
+    sortdintervals = sorted(intervals, key=lambda x: x[0])
+    mergedIntervals =[]
+    for i in range(len(sortdintervals)):
+        if i==0:            
+            mergedIntervals.append(sortdintervals[i])
+        elif sortdintervals[i][0]<=mergedIntervals[-1][1]:
+            mergedIntervals[-1]=[mergedIntervals[-1][0],max(sortdintervals[i][1],mergedIntervals[-1][1])]
+        else:
+            mergedIntervals.append(sortdintervals[i])
+    return mergedIntervals
