@@ -1,0 +1,24 @@
+#O(n) time | O(1)
+def longestPeak(array):
+    longPeak = 0
+    i = 1
+    while i < len(array)-1:#Identify peaks
+        isPeak = array[i-1]<array[i] and array[i]>array[i+1]
+        if not isPeak:
+            i += 1
+            continue
+
+        leftIdx = i -2#Calculate ith position of left side to peak
+        while leftIdx >= 0 and array[leftIdx]<array[leftIdx+1]:
+            leftIdx -= 1
+        
+        rightIdx = i + 2#Calculate ith position of right side to peak
+        while rightIdx < len(array) and array[rightIdx]<array[rightIdx-1]:
+            rightIdx += 1
+
+        currentPeak = rightIdx - leftIdx -1
+        longPeak = max(longPeak,currentPeak)
+        i = rightIdx
+
+        
+    return longPeak
