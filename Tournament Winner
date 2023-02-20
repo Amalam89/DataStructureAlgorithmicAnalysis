@@ -1,0 +1,21 @@
+#Time Complexity-O(n) - n is elements of 'results', which is also # of competitions
+#Space Complexity-O(k) - k is number of teams in dictionary
+def tournamentWinner(competitions, results):
+    # Write your code here.
+	emptyDict = {}
+    j = 0;
+    for i in results:#will always have to go through entire results list
+        if i == 0:
+            if competitions[j][1] in emptyDict:#accessing the list matrix is done in O(1)
+                emptyDict[competitions[j][1]] += 3
+            else:
+                emptyDict[competitions[j][1]] = 3
+        elif i == 1:
+            if competitions[j][0] in emptyDict:
+                emptyDict[competitions[j][0]] += 3
+            else:
+                emptyDict[competitions[j][0]] = 3
+        j+=1
+		
+		
+    return max(emptyDict, key=emptyDict.get)
