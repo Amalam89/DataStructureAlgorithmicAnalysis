@@ -1,0 +1,39 @@
+#O(n)-time | O(1)-space/only using pointers
+
+def isValidSubsequence(array, sequence): 	           
+    j=0
+    for i in range(len(array)): 
+        if j == len(sequence):
+        #if 0 == len(sequence) or it reached it through increments
+            return True
+        if sequence[j] == array[i]:# and i not in cannotappear:                               
+            j+= 1#move the pointer of the main array in both cases          
+                 #move to the outer loop for the
+                 #next element in subsequence
+            
+
+    return j == len(sequence) 
+    #by this happening every element was matched with
+    #an element from array and incremented till the 
+    #len(sequence) was reached
+
+#O(n)-Time, n=length of array | O(1)-Space, only using pointers
+#for loop version
+def isValidSubsequence(array, sequence):
+    seqind = 0
+	for value in array:
+		if seqind == len(sequence):
+			return True
+		if sequence[seqind] == value:
+			seqind += 1
+	return seqind == len(sequence)
+
+#O(n)-Time, n=length of array | O(1)-Space, only using pointers
+def isValidSubsequence(array, sequence):
+	arrayindx = 0
+	seqindx = 0	
+	while arrayindx < len(array) and seqindx < len(sequence):
+		if array[arrayindx] == sequence[seqindx]:
+			seqindx += 1
+		arrayindx += 1
+	return seqindx == len(sequence)
