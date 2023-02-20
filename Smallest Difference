@@ -1,0 +1,29 @@
+# O(nlog(n)+mlog(m))-time for sorting every array| O(1)-space 
+def smallestDifference(arrayOne, arrayTwo):
+    difference = smallest = float('inf')
+    arrayOne.sort()
+    arrayTwo.sort()
+    i = j = 0
+    pair = []
+
+    while(i < len(arrayOne) and j < len(arrayTwo)): 
+        
+        first_num = arrayOne[i]
+        sec_num = arrayTwo[j]
+        
+        if first_num<sec_num:         
+            difference = sec_num - first_num
+            i += 1
+            
+        elif first_num>sec_num:
+            difference = first_num - sec_num
+            j += 1
+            
+        else:
+            return [first_num,sec_num]
+            
+        if smallest > difference:
+            smallest = difference
+            pair = [first_num,sec_num]
+        
+    return pair
