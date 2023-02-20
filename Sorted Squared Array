@@ -1,0 +1,30 @@
+#O(nlogn)-time | O(n)-space 
+def sortedSquaredArray(array):
+	newArray = []
+	for i in range(len(array)):
+		x = array[i]
+        newArray.append(x*x)
+	
+    return sorted(newArray)
+
+#O(n)-time/O(n)-space, for loop version
+def sortedSquaredArray(array):
+
+    sortedArray = [0 for _ in array]
+    startidx = 0 
+    endidx = len(array) - 1
+    current = endidx
+	
+    for i in range(len(array)):
+		if abs(array[startidx])>=abs(array[endidx]):
+            	x = array[startidx]
+			sortedArray[current] = x*x
+			startidx += 1            
+		else:
+            	x = array[endidx]
+			sortedArray[current] = x*x
+			endidx -= 1
+    
+        	current-=1     
+	
+    return sortedArray
